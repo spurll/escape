@@ -50,6 +50,8 @@ But there's no reason that we couldn't go forward:
    obstacle; if obstacles are generated, at least one must be solvable with an extant
    item)
 
+In order for seed to be meaningful, entire room graph must be generated up-front.
+
 The goal could be an object or an exit, and it will have certain properties governing how
 it can appear (can it fit in a box? is it a door?).
 
@@ -59,7 +61,7 @@ ensures the game is solvable and that there are no dead-ends.
 After the puzzle game, create something where items/obstacles are in different "rooms",
 which must be moved to before objects can be interacted with (also need inventory system).
 
-Show seed for room.
+Show seed for room. If no seed is input generate a random seed.
 
 "Meditative" mode that tracks things and keeps going forever (like Desert Golfing).
 
@@ -105,25 +107,29 @@ pick a name that starts with the same letter/sound (sh/th/ch)
 Structure
 ---------
 
-* `room` class
+* `Room` class
     * `name`: the name of the room (e.g., "Wallace's Window Warehouse")
     * `decorations`: list of descriptive flourishes
     * `obstacles`: list of `obstacle` objects
     * `items`: list of `item` objects
-* `object` class
+    * `graph`: the graph of obstacles and items (obstacles lock away items)
+* `Graph` class
+    * ...
+* `Object` class
     * `used`: boolean
     * `attributes`: set of `attribute` objects
-* `obstacle` class (child of `object`)
+* `Obstacle` class (child of `object`)
     * ...
-* `item` class (child of `object`)
+* `Item` class (child of `object`)
     * ...
-* `attribute` class
+* `Attribute` class
     * ...
 
 Hints
 -----
 
-Hints ("something heavy can be used to break something wooden"). Track hints used. Track moves made. Know optimal moves.
+Hints ("something heavy can be used to break something wooden"). Track hints used. Track
+moves made. Know optimal moves.
 
 Syntax
 ------
